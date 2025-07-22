@@ -3,177 +3,512 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Showcase</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <title>Project Showcase - Developer Portfolio</title>
+  <!-- Google Fonts - VS Code inspired typography -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
-      font-family: 'Source Code Pro', monospace;
-      background: linear-gradient(to bottom right, #ffffff, #e6f2ff);
-      color: #1e3a8a;
+    :root {
+      --primary-color: #007ACC;
+      --secondary-color: #1E1E1E;
+      --accent-color: #4FC3F7;
+      --text-primary: #2D2D2D;
+      --text-secondary: #666666;
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #F8F9FA;
+      --border-color: #E1E4E8;
+      --shadow: 0 8px 32px rgba(0, 122, 204, 0.1);
+      --shadow-hover: 0 16px 64px rgba(0, 122, 204, 0.15);
+      --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --code-bg: #F6F8FA;
+    }
+
+    * {
       margin: 0;
       padding: 0;
-      position: relative;
+      box-sizing: border-box;
     }
-    body::before {
-      content: '';
-      position: absolute;
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Floating programming symbols animation */
+    .floating-symbols {
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: repeating-linear-gradient(45deg, transparent, transparent 10px, #bfdbfe 10px, #bfdbfe 11px);
-      opacity: 0.05;
       pointer-events: none;
+      z-index: 1;
+      opacity: 0.08; /* Increased opacity */
     }
+
+    .symbol {
+      position: absolute;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(20px, 4vw, 60px);
+      color: var(--primary-color);
+      animation: float 15s linear infinite; /* Faster animation */
+      opacity: 0.8; /* More visible */
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.8;
+      }
+      90% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Main content */
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 40px 20px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 2;
     }
-    h1 {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 48px;
-      color: #1d4ed8;
+
+    /* Header */
+    .header {
       text-align: center;
-      margin-bottom: 60px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      padding: 80px 0 60px;
+      background: linear-gradient(135deg, rgba(0, 122, 204, 0.05) 0%, rgba(79, 195, 247, 0.05) 100%);
+      margin-bottom: 80px;
+      border-radius: 0 0 40px 40px;
     }
-    section {
-      background: #ffffff;
-      border: 2px solid #93c5fd;
-      border-radius: 12px;
-      padding: 30px;
-      margin-bottom: 50px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-      animation: fadeIn 1s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    h2 {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 36px;
-      color: #1d4ed8;
+
+    .header h1 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      color: var(--primary-color);
       margin-bottom: 20px;
+      position: relative;
     }
-    p {
-      font-size: 18px;
-      line-height: 1.6;
-      margin-bottom: 30px;
+
+    .header h1::before {
+      content: '</>';
+      position: absolute;
+      left: -60px;
+      top: 0;
+      opacity: 0.3;
+      font-size: 0.8em;
     }
-    .video-container {
-      margin-bottom: 30px;
-      border-radius: 8px;
+
+    .header p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Project sections */
+    .project {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 60px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      position: relative;
       overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
+
+    .project::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient);
+      border-radius: 24px 24px 0 0;
+    }
+
+    .project:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--primary-color);
+    }
+
+    .project-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .project-title i {
+      font-size: 1.5rem;
+      opacity: 0.9; /* More visible */
+      color: var(--primary-color);
+    }
+
+    .project-description {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--secondary-color);
+      margin: 30px 0 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::before {
+      content: '▶';
+      color: var(--primary-color);
+      font-size: 0.8em;
+    }
+
+    /* Slideshow styles */
+    .slideshow-container {
+      margin-bottom: 30px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      background: var(--code-bg);
+      border: 1px solid var(--border-color);
+      position: relative;
+    }
+
     .swiper {
-      height: 500px;
-      margin-bottom: 30px;
-      border-radius: 8px;
-      overflow: hidden;
+      height: 400px;
     }
+
+    .swiper-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-secondary);
+    }
+
     .swiper-slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 0;
     }
+
+    .coming-soon {
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: white !important;
+      background: rgba(0, 122, 204, 0.8) !important;
+      border-radius: 50%;
+      width: 50px !important;
+      height: 50px !important;
+      margin-top: -25px !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease !important;
+      backdrop-filter: blur(5px);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+      background: rgba(0, 122, 204, 1) !important;
+      transform: scale(1.1) !important;
+    }
+
+    .swiper-button-next {
+      right: 20px !important;
+    }
+
+    .swiper-button-prev {
+      left: 20px !important;
+    }
+
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+      font-size: 20px !important;
+      font-weight: 700 !important;
+    }
+
+    .swiper-pagination-bullet {
+      background: white !important;
+      opacity: 0.5 !important;
+      transition: all 0.3s ease !important;
+      width: 12px !important;
+      height: 12px !important;
+    }
+
+    .swiper-pagination-bullet-active {
+      opacity: 1 !important;
+      transform: scale(1.2) !important;
+      background: var(--primary-color) !important;
+    }
+
     .fullscreen-btn {
-      background: #3b82f6;
+      background: var(--gradient);
       color: white;
       border: none;
-      padding: 10px 20px;
-      border-radius: 4px;
+      padding: 12px 24px;
+      border-radius: 8px;
       cursor: pointer;
-      font-size: 14px;
-      margin-top: 10px;
-      transition: background 0.3s;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 15px;
     }
+
     .fullscreen-btn:hover {
-      background: #1d4ed8;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 122, 204, 0.3);
     }
-    h3 {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 24px;
-      color: #2563eb;
-      margin-bottom: 15px;
-    }
+
+    /* Technologies */
     .technologies {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
       margin-bottom: 30px;
     }
+
     .tech-tag {
-      background: #dbeafe;
-      color: #1d4ed8;
+      background: var(--code-bg);
+      color: var(--primary-color);
       padding: 8px 16px;
       border-radius: 20px;
-      font-size: 14px;
-      border: 1px solid #93c5fd;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
     }
-    ul {
-      list-style-type: disc;
-      padding-left: 20px;
+
+    .tech-tag:hover {
+      background: var(--primary-color);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 122, 204, 0.3);
+    }
+
+    /* Highlights */
+    .highlights {
+      background: var(--code-bg);
+      border-radius: 12px;
+      padding: 25px;
       margin-bottom: 30px;
+      border-left: 4px solid var(--primary-color);
     }
-    li {
-      margin-bottom: 10px;
+
+    .highlights ul {
+      list-style: none;
     }
-    .links {
+
+    .highlights li {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 12px;
+      font-size: 1rem;
+      color: var(--text-primary);
+    }
+
+    .highlights li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--primary-color);
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    /* Links */
+    .project-links {
       display: flex;
       gap: 20px;
+      flex-wrap: wrap;
     }
-    .link {
-      color: #2563eb;
-      font-size: 18px;
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      background: transparent;
+      color: var(--primary-color);
       text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
+      border: 2px solid var(--primary-color);
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
     }
-    .link:hover {
-      color: #1d4ed8;
+
+    .project-link:hover {
+      background: var(--primary-color);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 122, 204, 0.3);
     }
-    .coming-soon {
-      width: 100%;
-      height: 100%;
+
+    .project-link i {
+      font-size: 1.2rem; /* Larger icons */
+      width: 20px; /* Fixed width for alignment */
+      text-align: center;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 15px;
+      }
+      
+      .header {
+        padding: 60px 0 40px;
+        margin-bottom: 40px;
+      }
+      
+      .project {
+        padding: 30px 20px;
+        margin-bottom: 40px;
+      }
+      
+      .project-title {
+        font-size: 1.5rem;
+      }
+      
+      .swiper {
+        height: 300px;
+      }
+      
+      .swiper-button-next,
+      .swiper-button-prev {
+        width: 40px !important;
+        height: 40px !important;
+        margin-top: -20px !important;
+      }
+      
+      .swiper-button-next:after,
+      .swiper-button-prev:after {
+        font-size: 16px !important;
+      }
+      
+      .technologies {
+        gap: 8px;
+      }
+      
+      .project-links {
+        gap: 15px;
+      }
+      
+      .project-link {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Loading animation */
+    .loading {
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #f0f9ff;
-      color: #1d4ed8;
-      font-size: 24px;
-      font-weight: bold;
+      height: 400px;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border-color);
+      border-top: 3px solid var(--primary-color);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
+  <!-- Floating symbols background -->
+  <div class="floating-symbols" id="floating-symbols"></div>
+
   <div class="container">
-    <h1>Project Showcase</h1>
+    <!-- Header -->
+    <header class="header">
+      <h1>Project Showcase</h1>
+      <p>Crafting innovative solutions with cutting-edge technology</p>
+    </header>
     
     <!-- Project 1: Nexus AI -->
-    <section>
-      <h2>Nexus AI - Enterprise Command Center</h2>
-      <p>Revolutionize your enterprise operations with Nexus AI, the premium desktop AI assistant designed for seamless command and control. Featuring an advanced visual interface powered by state-of-the-art LLMs, it empowers teams to plan, execute, and monitor tasks intelligently, boosting productivity by up to 50% in dynamic business environments. With enterprise-grade security and intuitive UI/UX, Nexus AI transforms chaotic workflows into streamlined success stories, making it the ultimate tool for forward-thinking leaders aiming to dominate their markets. Ideal for scaling businesses, it delivers real-time insights and automation that drive revenue growth and operational excellence.</p>
+    <section class="project">
+      <h2 class="project-title">
+        <i class="fas fa-robot"></i>
+        Nexus AI - Enterprise Command Center
+      </h2>
+      <p class="project-description">
+        Revolutionize your enterprise operations with Nexus AI, the premium desktop AI assistant designed for seamless command and control. Featuring an advanced visual interface powered by state-of-the-art LLMs, it empowers teams to plan, execute, and monitor tasks intelligently, boosting productivity by up to 50% in dynamic business environments.
+      </p>
       
-      <!-- Slideshow -->
-      <h3>Screenshots</h3>
-      <div class="swiper mySwiper" id="swiper-nexus-ai">
-        <div class="swiper-wrapper"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
+      <h3 class="section-title">Screenshots</h3>
+      <div class="slideshow-container">
+        <div class="swiper" id="swiper-nexus-ai">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide loading">
+              <div class="spinner"></div>
+              <p>Loading screenshots...</p>
+            </div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
       </div>
-      <button class="fullscreen-btn" onclick="toggleFullscreen('swiper-nexus-ai')">Toggle Fullscreen</button>
+      <button class="fullscreen-btn" onclick="toggleFullscreen('swiper-nexus-ai')">
+        <i class="fas fa-expand"></i>
+        Fullscreen View
+      </button>
       
-      <!-- Technologies -->
-      <h3>Technologies</h3>
+      <h3 class="section-title">Technologies</h3>
       <div class="technologies">
         <span class="tech-tag">React</span>
         <span class="tech-tag">TypeScript</span>
@@ -183,40 +518,58 @@
         <span class="tech-tag">Framer Motion</span>
       </div>
       
-      <!-- Highlights -->
-      <h3>Highlights</h3>
-      <ul>
-        <li>Premium Enterprise Interface with Glassmorphism design</li>
-        <li>Advanced Voice Recognition with hands-free commands</li>
-        <li>Real-time Command Execution with live progress tracking</li>
-        <li>Security-First Design with protected environment variables</li>
-      </ul>
+      <h3 class="section-title">Highlights</h3>
+      <div class="highlights">
+        <ul>
+          <li>Premium Enterprise Interface with Glassmorphism design</li>
+          <li>Advanced Voice Recognition with hands-free commands</li>
+          <li>Real-time Command Execution with live progress tracking</li>
+          <li>Security-First Design with protected environment variables</li>
+        </ul>
+      </div>
       
-      <!-- Links -->
-      <div class="links">
-        <a href="https://github.com/ratulalahy/nexus-ai" target="_blank" rel="noopener noreferrer" class="link">GitHub →</a>
-        <a href="https://nexus-ai-demo.com" target="_blank" rel="noopener noreferrer" class="link">Demo →</a>
+      <div class="project-links">
+        <a href="https://github.com/ratulalahy/nexus-ai" target="_blank" rel="noopener noreferrer" class="project-link">
+          <i class="fab fa-github"></i>
+          GitHub
+        </a>
+        <a href="https://nexus-ai-demo.com" target="_blank" rel="noopener noreferrer" class="project-link">
+          <i class="fas fa-external-link-alt"></i>
+          Live Demo
+        </a>
       </div>
     </section>
     
     <!-- Project 2: T5ParEvo -->
-    <section>
-      <h2>Med Truth Guard: Evolving Shields for Reliable Medical Facts </h2>
-      <p>Unlock the future of AI robustness with Med Truth Guard, the groundbreaking adversarial attack generator tailored for scientific claim verification. Leveraging evolutionary fine-tuning on the T5 model, this tool empowers cybersecurity firms and research institutions to simulate sophisticated threats, enhancing model defenses and preventing costly vulnerabilities. Published in ACM Transactions on Intelligent Systems, Med Truth Guard outperforms competitors by delivering semantically preserved attacks with superior precision, positioning your organization as a leader in adversarial ML innovation. It's the essential solution for businesses seeking to fortify AI systems against evolving risks, driving trust, compliance, and market dominance in high-stakes industries.
-</p>
+    <section class="project">
+      <h2 class="project-title">
+        <i class="fas fa-shield-alt"></i>
+        Med Truth Guard: Evolving Shields for Reliable Medical Facts
+      </h2>
+      <p class="project-description">
+        Unlock the future of AI robustness with Med Truth Guard, the groundbreaking adversarial attack generator tailored for scientific claim verification. Leveraging evolutionary fine-tuning on the T5 model, this tool empowers cybersecurity firms and research institutions to simulate sophisticated threats, enhancing model defenses and preventing costly vulnerabilities.
+      </p>
       
-      <!-- Slideshow -->
-      <h3>Screenshots</h3>
-      <div class="swiper mySwiper" id="swiper-t5parevo">
-        <div class="swiper-wrapper"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
+      <h3 class="section-title">Screenshots</h3>
+      <div class="slideshow-container">
+        <div class="swiper" id="swiper-t5parevo">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide loading">
+              <div class="spinner"></div>
+              <p>Loading screenshots...</p>
+            </div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
       </div>
-      <button class="fullscreen-btn" onclick="toggleFullscreen('swiper-t5parevo')">Toggle Fullscreen</button>
+      <button class="fullscreen-btn" onclick="toggleFullscreen('swiper-t5parevo')">
+        <i class="fas fa-expand"></i>
+        Fullscreen View
+      </button>
       
-      <!-- Technologies -->
-      <h3>Technologies</h3>
+      <h3 class="section-title">Technologies</h3>
       <div class="technologies">
         <span class="tech-tag">Python</span>
         <span class="tech-tag">TensorFlow</span>
@@ -226,39 +579,58 @@
         <span class="tech-tag">Scientific Computing</span>
       </div>
       
-      <!-- Highlights -->
-      <h3>Highlights</h3>
-      <ul>
-        <li>Iterative evolutionary attack generation</li>
-        <li>Semantic preservation with technical term validation</li>
-        <li>Published in ACM Transactions on Intelligent Systems</li>
-        <li>Superior performance vs existing attack generators</li>
-      </ul>
+      <h3 class="section-title">Highlights</h3>
+      <div class="highlights">
+        <ul>
+          <li>Iterative evolutionary attack generation</li>
+          <li>Semantic preservation with technical term validation</li>
+          <li>Published in ACM Transactions on Intelligent Systems</li>
+          <li>Superior performance vs existing attack generators</li>
+        </ul>
+      </div>
       
-      <!-- Links -->
-      <div class="links">
-        <a href="https://github.com/ratulalahy/T5ParEvo" target="_blank" rel="noopener noreferrer" class="link">GitHub →</a>
-        <a href="https://app.neptune.ai/ratulalahy/scifact-paraphrase-T5-evo/" target="_blank" rel="noopener noreferrer" class="link">Demo →</a>
+      <div class="project-links">
+        <a href="https://github.com/ratulalahy/T5ParEvo" target="_blank" rel="noopener noreferrer" class="project-link">
+          <i class="fab fa-github"></i>
+          GitHub
+        </a>
+        <a href="https://app.neptune.ai/ratulalahy/scifact-paraphrase-T5-evo/" target="_blank" rel="noopener noreferrer" class="project-link">
+          <i class="fas fa-external-link-alt"></i>
+          Neptune Demo
+        </a>
       </div>
     </section>
     
     <!-- Project 3: AI-Selector Platform -->
-    <section>
-      <h2>AI-Selector Platform</h2>
-      <p>Empower your business in the booming Bangladesh AI market with AI-Selector, the all-in-one platform delivering customized AI solutions that propel companies toward digital transformation. From tailored implementations to a comprehensive marketplace of tools, AI-Selector streamlines adoption, reducing integration time by 40% and unlocking new revenue streams through scalable, market-specific innovations. Designed for enterprises of all sizes, it bridges the gap between cutting-edge AI and practical business needs, fostering growth, efficiency, and competitive advantage. Join the ranks of successful adopters and turn AI into a profitable powerhouse for your operations.</p>
+    <section class="project">
+      <h2 class="project-title">
+        <i class="fas fa-brain"></i>
+        AI-Selector Platform
+      </h2>
+      <p class="project-description">
+        Empower your business in the booming Bangladesh AI market with AI-Selector, the all-in-one platform delivering customized AI solutions that propel companies toward digital transformation. From tailored implementations to a comprehensive marketplace of tools, AI-Selector streamlines adoption, reducing integration time by 40%.
+      </p>
       
-      <!-- Slideshow -->
-      <h3>Screenshots</h3>
-      <div class="swiper mySwiper" id="swiper-ai-selector">
-        <div class="swiper-wrapper"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
+      <h3 class="section-title">Screenshots</h3>
+      <div class="slideshow-container">
+        <div class="swiper" id="swiper-ai-selector">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide loading">
+              <div class="spinner"></div>
+              <p>Loading screenshots...</p>
+            </div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
       </div>
-      <button class="fullscreen-btn" onclick="toggleFullscreen('swiper-ai-selector')">Toggle Fullscreen</button>
+      <button class="fullscreen-btn" onclick="toggleFullscreen('swiper-ai-selector')">
+        <i class="fas fa-expand"></i>
+        Fullscreen View
+      </button>
       
-      <!-- Technologies -->
-      <h3>Technologies</h3>
+      <h3 class="section-title">Technologies</h3>
       <div class="technologies">
         <span class="tech-tag">Next.js</span>
         <span class="tech-tag">React</span>
@@ -267,101 +639,189 @@
         <span class="tech-tag">Custom Solutions</span>
       </div>
       
-      <!-- Highlights -->
-      <h3>Highlights</h3>
-      <ul>
-        <li>Comprehensive AI solution marketplace</li>
-        <li>Custom enterprise AI implementations</li>
-        <li>Scalable platform architecture</li>
-        <li>Focused on Bangladesh market needs</li>
-      </ul>
+      <h3 class="section-title">Highlights</h3>
+      <div class="highlights">
+        <ul>
+          <li>Comprehensive AI solution marketplace</li>
+          <li>Custom enterprise AI implementations</li>
+          <li>Scalable platform architecture</li>
+          <li>Focused on Bangladesh market needs</li>
+        </ul>
+      </div>
       
-      <!-- Links -->
-      <div class="links">
-        <a href="https://ai-selector.vercel.app" target="_blank" rel="noopener noreferrer" class="link">Demo →</a>
+      <div class="project-links">
+        <a href="https://ai-selector.vercel.app" target="_blank" rel="noopener noreferrer" class="project-link">
+          <i class="fas fa-external-link-alt"></i>
+          Live Demo
+        </a>
       </div>
     </section>
-    
-    <!-- Project 4: Voice AI & Workflow Automation Suite -->
-
   </div>
 
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  
   <script>
+    // Floating symbols animation
+    function createFloatingSymbols() {
+      const symbols = ['{}', '[]', '()', '<>', '/>', '&&', '||', '===', '=>', '++', '--', '!=', '<=', '>='];
+      const container = document.getElementById('floating-symbols');
+      
+      function addSymbol() {
+        const symbol = document.createElement('div');
+        symbol.className = 'symbol';
+        symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        symbol.style.left = Math.random() * 100 + 'vw';
+        symbol.style.animationDuration = (10 + Math.random() * 5) + 's'; // Faster animation
+        symbol.style.animationDelay = Math.random() * 2 + 's';
+        container.appendChild(symbol);
+        
+        setTimeout(() => {
+          symbol.remove();
+        }, 15000);
+      }
+      
+      // Add initial symbols
+      for (let i = 0; i < 10; i++) { // More initial symbols
+        setTimeout(addSymbol, i * 1000);
+      }
+      
+      // Continue adding symbols
+      setInterval(addSymbol, 2000); // More frequent additions
+    }
+
+    // Project image configurations
+    const projectsImages = {
+      'nexus-ai': { num: 5, path: 'img/nexus-ai/' },
+      't5parevo': { num: 7, path: 'img/t5parevo/' },
+      'ai-selector': { num: 5, path: 'img/ai-selector/' }
+    };
+
+    // Function to populate swiper with images
+    async function populateSwiper(swiperId, slug) {
+      const wrapper = document.querySelector(`#${swiperId} .swiper-wrapper`);
+      const config = projectsImages[slug];
+      
+      // Clear loading content
+      wrapper.innerHTML = '';
+      
+      let hasValidImages = false;
+      const validSlides = [];
+
+      // Check each image
+      for (let i = 1; i <= config.num; i++) {
+        const imgSrc = `${config.path}${i}.jpg`;
+        
+        try {
+          // Test if image exists
+          const img = new Image();
+          await new Promise((resolve, reject) => {
+            img.onload = resolve;
+            img.onerror = reject;
+            img.src = imgSrc;
+          });
+          
+          // If image loads successfully, create slide
+          const slide = document.createElement('div');
+          slide.className = 'swiper-slide';
+          slide.innerHTML = `<img src="${imgSrc}" alt="Screenshot ${i}" loading="lazy">`;
+          validSlides.push(slide);
+          hasValidImages = true;
+        } catch (error) {
+          console.log(`Image not found: ${imgSrc}`);
+        }
+      }
+
+      // Add valid slides or coming soon message
+      if (hasValidImages) {
+        validSlides.forEach(slide => wrapper.appendChild(slide));
+      } else {
+        const comingSoonSlide = document.createElement('div');
+        comingSoonSlide.className = 'swiper-slide coming-soon';
+        comingSoonSlide.innerHTML = '<div><i class="fas fa-images" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.3;"></i><br>Screenshots Coming Soon</div>';
+        wrapper.appendChild(comingSoonSlide);
+      }
+
+      return hasValidImages;
+    }
+
     // Function to toggle fullscreen
     function toggleFullscreen(id) {
       const elem = document.getElementById(id);
       if (!document.fullscreenElement) {
         elem.requestFullscreen().catch(err => {
-          alert(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
+          console.log(`Error attempting to enable fullscreen mode: ${err.message}`);
         });
       } else {
         document.exitFullscreen();
       }
     }
 
-    // Project image configs
-    const projectsImages = {
-      'nexus-ai': { num: 5, path: 'img/nexus-ai/' },
-      't5parevo': { num: 4, path: 'img/t5parevo/' },
-      'ai-selector': { num: 5, path: 'img/ai-selector/' },
-      'voice-ai': { num: 4, path: 'img/voice-ai/' }
-    };
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', async function() {
+      // Start floating symbols animation
+      createFloatingSymbols();
 
-    // Default image (assume you have a default.jpg in img/)
-    const defaultImage = 'img/default.jpg'; // Replace with actual default or coming soon image
+      // Initialize all swipers
+      const swiperConfigs = [
+        { id: 'swiper-nexus-ai', slug: 'nexus-ai' },
+        { id: 'swiper-t5parevo', slug: 't5parevo' },
+        { id: 'swiper-ai-selector', slug: 'ai-selector' }
+      ];
 
-    // Function to populate swiper
-    function populateSwiper(swiperId, slug) {
-      const wrapper = document.querySelector(`#${swiperId} .swiper-wrapper`);
-      const config = projectsImages[slug];
-      let hasImages = false;
-
-      for (let i = 1; i <= config.num; i++) {
-        const imgSrc = `${config.path}${i}.jpg`;
-        const slide = document.createElement('div');
-        slide.className = 'swiper-slide';
-        const img = document.createElement('img');
-        img.src = imgSrc;
-        img.alt = `Screenshot ${i}`;
-        img.onerror = function() {
-          this.src = defaultImage;
-          this.alt = 'Coming Soon';
-        };
-        slide.appendChild(img);
-        wrapper.appendChild(slide);
-        hasImages = true; // Assume at least one, but if all fail, still shows default
+      for (const config of swiperConfigs) {
+        try {
+          const hasImages = await populateSwiper(config.id, config.slug);
+          
+          // Initialize Swiper
+          new Swiper(`#${config.id}`, {
+            loop: hasImages,
+            pagination: {
+              el: `#${config.id} .swiper-pagination`,
+              clickable: true,
+              dynamicBullets: true
+            },
+            navigation: {
+              nextEl: `#${config.id} .swiper-button-next`,
+              prevEl: `#${config.id} .swiper-button-prev`,
+            },
+            autoplay: hasImages ? {
+              delay: 4000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true
+            } : false,
+            effect: 'fade',
+            fadeEffect: {
+              crossFade: true
+            },
+            speed: 600,
+            preloadImages: false,
+            lazy: true
+          });
+        } catch (error) {
+          console.error(`Error initializing swiper for ${config.id}:`, error);
+        }
       }
+    });
 
-      if (!hasImages) {
-        const slide = document.createElement('div');
-        slide.className = 'swiper-slide coming-soon';
-        slide.innerText = 'Coming Soon';
-        wrapper.appendChild(slide);
-      }
-    }
+    // Smooth scrolling for better UX
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
 
-    // Populate all swipers
-    populateSwiper('swiper-nexus-ai', 'nexus-ai');
-    populateSwiper('swiper-t5parevo', 't5parevo');
-    populateSwiper('swiper-ai-selector', 'ai-selector');
-    // populateSwiper('swiper-voice-ai', 'voice-ai');
-
-    // Initialize Swipers
-    document.querySelectorAll('.mySwiper').forEach((el) => {
-      new Swiper(el, {
-        loop: true,
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-        autoplay: {
-          delay: 3000,
-          disableOnInteraction: false,
-        },
+    // Add some interactive hover effects
+    document.querySelectorAll('.project').forEach(project => {
+      project.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-8px)';
+      });
+      
+      project.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
       });
     });
   </script>
