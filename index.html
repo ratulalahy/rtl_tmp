@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Showcase</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <style>
+    body {
+      font-family: 'Source Code Pro', monospace;
+      background: linear-gradient(to bottom right, #ffffff, #e6f2ff);
+      color: #1e3a8a;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(45deg, transparent, transparent 10px, #bfdbfe 10px, #bfdbfe 11px);
+      opacity: 0.05;
+      pointer-events: none;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 48px;
+      color: #1d4ed8;
+      text-align: center;
+      margin-bottom: 60px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    section {
+      background: #ffffff;
+      border: 2px solid #93c5fd;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 50px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 36px;
+      color: #1d4ed8;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+    .video-container {
+      margin-bottom: 30px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .swiper {
+      height: 500px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .fullscreen-btn {
+      background: #3b82f6;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 10px;
+      transition: background 0.3s;
+    }
+    .fullscreen-btn:hover {
+      background: #1d4ed8;
+    }
+    h3 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 24px;
+      color: #2563eb;
+      margin-bottom: 15px;
+    }
+    .technologies {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .tech-tag {
+      background: #dbeafe;
+      color: #1d4ed8;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      border: 1px solid #93c5fd;
+    }
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+      margin-bottom: 30px;
+    }
+    li {
+      margin-bottom: 10px;
+    }
+    .links {
+      display: flex;
+      gap: 20px;
+    }
+    .link {
+      color: #2563eb;
+      font-size: 18px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    .link:hover {
+      color: #1d4ed8;
+    }
+    .coming-soon {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f0f9ff;
+      color: #1d4ed8;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Project Showcase</h1>
+    
+    <!-- Project 1: Nexus AI -->
+    <section>
+      <h2>Nexus AI - Enterprise Command Center</h2>
+      <p>Premium Desktop AI Assistant with Advanced Visual Interface. Built with enterprise-grade UI/UX and powered by cutting-edge LLMs for intelligent planning and execution.</p>
+      
+      <!-- Video -->
+      <div class="video-container">
+        <iframe width="100%" height="400" src="https://www.youtube.com/embed/your-video-id" title="Nexus AI Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      
+      <!-- Slideshow -->
+      <h3>Screenshots</h3>
+      <div class="swiper mySwiper" id="swiper-nexus-ai">
+        <div class="swiper-wrapper"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+      <button class="fullscreen-btn" onclick="toggleFullscreen('swiper-nexus-ai')">Toggle Fullscreen</button>
+      
+      <!-- Technologies -->
+      <h3>Technologies</h3>
+      <div class="technologies">
+        <span class="tech-tag">React</span>
+        <span class="tech-tag">TypeScript</span>
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">OpenAI GPT-4</span>
+        <span class="tech-tag">PyAutoGUI</span>
+        <span class="tech-tag">Framer Motion</span>
+      </div>
+      
+      <!-- Highlights -->
+      <h3>Highlights</h3>
+      <ul>
+        <li>Premium Enterprise Interface with Glassmorphism design</li>
+        <li>Advanced Voice Recognition with hands-free commands</li>
+        <li>Real-time Command Execution with live progress tracking</li>
+        <li>Security-First Design with protected environment variables</li>
+      </ul>
+      
+      <!-- Links -->
+      <div class="links">
+        <a href="https://github.com/ratulalahy/nexus-ai" target="_blank" rel="noopener noreferrer" class="link">GitHub →</a>
+        <a href="https://nexus-ai-demo.com" target="_blank" rel="noopener noreferrer" class="link">Demo →</a>
+      </div>
+    </section>
+    
+    <!-- Project 2: T5ParEvo -->
+    <section>
+      <h2>T5ParEvo: Iterative Evolutionary Attack Generator</h2>
+      <p>Advanced adversarial attack generator for Scientific Claim Verification using T5 model with evolutionary fine-tuning approach.</p>
+      
+      <!-- Slideshow -->
+      <h3>Screenshots</h3>
+      <div class="swiper mySwiper" id="swiper-t5parevo">
+        <div class="swiper-wrapper"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+      <button class="fullscreen-btn" onclick="toggleFullscreen('swiper-t5parevo')">Toggle Fullscreen</button>
+      
+      <!-- Technologies -->
+      <h3>Technologies</h3>
+      <div class="technologies">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">TensorFlow</span>
+        <span class="tech-tag">T5</span>
+        <span class="tech-tag">NLP</span>
+        <span class="tech-tag">Adversarial ML</span>
+        <span class="tech-tag">Scientific Computing</span>
+      </div>
+      
+      <!-- Highlights -->
+      <h3>Highlights</h3>
+      <ul>
+        <li>Iterative evolutionary attack generation</li>
+        <li>Semantic preservation with technical term validation</li>
+        <li>Published in ACM Transactions on Intelligent Systems</li>
+        <li>Superior performance vs existing attack generators</li>
+      </ul>
+      
+      <!-- Links -->
+      <div class="links">
+        <a href="https://github.com/ratulalahy/T5ParEvo" target="_blank" rel="noopener noreferrer" class="link">GitHub →</a>
+        <a href="https://app.neptune.ai/ratulalahy/scifact-paraphrase-T5-evo/" target="_blank" rel="noopener noreferrer" class="link">Demo →</a>
+      </div>
+    </section>
+    
+    <!-- Project 3: AI-Selector Platform -->
+    <section>
+      <h2>AI-Selector Platform</h2>
+      <p>One-stop AI platform for the Bangladesh market, providing custom AI solutions to companies with comprehensive service offerings.</p>
+      
+      <!-- Slideshow -->
+      <h3>Screenshots</h3>
+      <div class="swiper mySwiper" id="swiper-ai-selector">
+        <div class="swiper-wrapper"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+      <button class="fullscreen-btn" onclick="toggleFullscreen('swiper-ai-selector')">Toggle Fullscreen</button>
+      
+      <!-- Technologies -->
+      <h3>Technologies</h3>
+      <div class="technologies">
+        <span class="tech-tag">Next.js</span>
+        <span class="tech-tag">React</span>
+        <span class="tech-tag">TypeScript</span>
+        <span class="tech-tag">AI Integration</span>
+        <span class="tech-tag">Custom Solutions</span>
+      </div>
+      
+      <!-- Highlights -->
+      <h3>Highlights</h3>
+      <ul>
+        <li>Comprehensive AI solution marketplace</li>
+        <li>Custom enterprise AI implementations</li>
+        <li>Scalable platform architecture</li>
+        <li>Focused on Bangladesh market needs</li>
+      </ul>
+      
+      <!-- Links -->
+      <div class="links">
+        <a href="https://ai-selector.vercel.app" target="_blank" rel="noopener noreferrer" class="link">Demo →</a>
+      </div>
+    </section>
+    
+    <!-- Project 4: Voice AI & Workflow Automation Suite -->
+    <section>
+      <h2>Voice AI & Workflow Automation Suite</h2>
+      <p>Advanced voice agent systems using cutting-edge APIs for automatic representative and workforce integration.</p>
+      
+      <!-- Slideshow -->
+      <h3>Screenshots</h3>
+      <div class="swiper mySwiper" id="swiper-voice-ai">
+        <div class="swiper-wrapper"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+      <button class="fullscreen-btn" onclick="toggleFullscreen('swiper-voice-ai')">Toggle Fullscreen</button>
+      
+      <!-- Technologies -->
+      <h3>Technologies</h3>
+      <div class="technologies">
+        <span class="tech-tag">Google ADK</span>
+        <span class="tech-tag">OpenAI</span>
+        <span class="tech-tag">Anthropic MCP</span>
+        <span class="tech-tag">Vapi</span>
+        <span class="tech-tag">Retell</span>
+        <span class="tech-tag">ElevenLabs</span>
+        <span class="tech-tag">Deepgram</span>
+      </div>
+      
+      <!-- Highlights -->
+      <h3>Highlights</h3>
+      <ul>
+        <li>Multi-platform voice integration</li>
+        <li>Intelligent conversation handling</li>
+        <li>Real-time audio processing</li>
+        <li>Enterprise workflow automation</li>
+      </ul>
+      
+      <!-- Links (none) -->
+    </section>
+  </div>
+
+  <script>
+    // Function to toggle fullscreen
+    function toggleFullscreen(id) {
+      const elem = document.getElementById(id);
+      if (!document.fullscreenElement) {
+        elem.requestFullscreen().catch(err => {
+          alert(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Project image configs
+    const projectsImages = {
+      'nexus-ai': { num: 5, path: 'img/nexus-ai/' },
+      't5parevo': { num: 4, path: 'img/t5parevo/' },
+      'ai-selector': { num: 5, path: 'img/ai-selector/' },
+      'voice-ai': { num: 4, path: 'img/voice-ai/' }
+    };
+
+    // Default image (assume you have a default.jpg in img/)
+    const defaultImage = 'img/default.jpg'; // Replace with actual default or coming soon image
+
+    // Function to populate swiper
+    function populateSwiper(swiperId, slug) {
+      const wrapper = document.querySelector(`#${swiperId} .swiper-wrapper`);
+      const config = projectsImages[slug];
+      let hasImages = false;
+
+      for (let i = 1; i <= config.num; i++) {
+        const imgSrc = `${config.path}${i}.jpg`;
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide';
+        const img = document.createElement('img');
+        img.src = imgSrc;
+        img.alt = `Screenshot ${i}`;
+        img.onerror = function() {
+          this.src = defaultImage;
+          this.alt = 'Coming Soon';
+        };
+        slide.appendChild(img);
+        wrapper.appendChild(slide);
+        hasImages = true; // Assume at least one, but if all fail, still shows default
+      }
+
+      if (!hasImages) {
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide coming-soon';
+        slide.innerText = 'Coming Soon';
+        wrapper.appendChild(slide);
+      }
+    }
+
+    // Populate all swipers
+    populateSwiper('swiper-nexus-ai', 'nexus-ai');
+    populateSwiper('swiper-t5parevo', 't5parevo');
+    populateSwiper('swiper-ai-selector', 'ai-selector');
+    populateSwiper('swiper-voice-ai', 'voice-ai');
+
+    // Initialize Swipers
+    document.querySelectorAll('.mySwiper').forEach((el) => {
+      new Swiper(el, {
+        loop: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+      });
+    });
+  </script>
+</body>
+</html>
